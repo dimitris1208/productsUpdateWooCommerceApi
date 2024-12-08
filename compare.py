@@ -1,16 +1,9 @@
+from update_api import update_product_price , delete_product
 import pandas as pd
 
 # File paths for the CSV files
 WEBSITE_FILE = "website_products.csv"
 WOOCOMMERCE_FILE = "woocommerce_products.csv"
-
-def update_product_price(sku, website_price, woocommerce_price):
-    """
-    Placeholder function to update the price of a product in WooCommerce.
-    To be implemented later.
-    """
-    print(f"Updating price for SKU {sku}: WooCommerce price {woocommerce_price} -> Website price {website_price}")
-
 
 def create_new_product(sku, website_price):
     """
@@ -19,13 +12,6 @@ def create_new_product(sku, website_price):
     """
     print(f"Creating new product with SKU {sku} and price {website_price}")
 
-
-def delete_product(sku):
-    """
-    Placeholder function to delete a product from WooCommerce.
-    To be implemented later.
-    """
-    print(f"Deleting product with SKU {sku}")
 
 
 def compare_products():
@@ -48,7 +34,7 @@ def compare_products():
     # Convert WooCommerce data to a dictionary for faster lookup by SKU
     woocommerce_dict = woocommerce_data.set_index("sku").to_dict("index")
 
-    # Iterate through website products
+    # Iterate through Website products
     for _, row in website_data.iterrows():
         website_sku = row["sku"]
         website_price = row["regular_price"]
@@ -60,7 +46,7 @@ def compare_products():
             # Compare prices
             if website_price != woocommerce_price:
                 # Call function to update product price
-                update_product_price(website_sku, website_price, woocommerce_price)
+                update_product_price(website_sku, website_price)
 
             # Update the flag to 1 for matched products
             woocommerce_data.loc[woocommerce_data["sku"] == website_sku, "flag"] = 1
@@ -75,7 +61,7 @@ def compare_products():
 
     # Save the updated WooCommerce data back to the CSV
     woocommerce_data.to_csv(WOOCOMMERCE_FILE, index=False, encoding="utf-8")
-    print("Comparison completed. WooCommerce CSV updated with flags.")
+    print("Comparison completed. WooCommerce CSV updated .")
 
 
 if __name__ == "__main__":
