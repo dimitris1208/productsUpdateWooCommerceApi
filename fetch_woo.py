@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 from dotenv import load_dotenv
-from fetch_fyll import remove_duplicates
+from fetch_website import remove_duplicates
 import os
 
 load_dotenv()
