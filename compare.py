@@ -1,17 +1,9 @@
-from update_api import update_product_price , delete_product
+from update_api import update_product_price , delete_product , create_new_product
 import pandas as pd
 
 # File paths for the CSV files
 WEBSITE_FILE = "website_products.csv"
 WOOCOMMERCE_FILE = "woocommerce_products.csv"
-
-def create_new_product(sku, website_price):
-    """
-    Placeholder function to create a new product in WooCommerce.
-    To be implemented later.
-    """
-    print(f"Creating new product with SKU {sku} and price {website_price}")
-
 
 
 def compare_products():
